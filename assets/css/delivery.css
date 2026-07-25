@@ -1,0 +1,32 @@
+/* Phase 3.13.2: isolated Delivery Method presentation using existing detail-page tokens. */
+.delivery-hero { background:linear-gradient(135deg,#050B18 0%,#073D75 52%,#0A6BC4 100%); }
+.delivery-context-grid { display:grid; gap:1px; grid-template-columns:repeat(2,minmax(0,1fr)); background:#E2E8F0; border:1px solid #E2E8F0; }
+.delivery-context-card { background:var(--background); min-height:214px; padding:30px 34px; }
+.delivery-context-card b { color:var(--ai-purple); font-size:12px; letter-spacing:.13em; }
+.delivery-context-card h3 { color:var(--text1); font-size:25px; margin:31px 0 12px; }
+.delivery-context-card p { line-height:1.8; margin:0; }
+.delivery-timeline { display:grid; gap:1px; grid-template-columns:repeat(4,minmax(0,1fr)); list-style:none; margin:0; padding:0; }
+.delivery-timeline li { border-top:1px solid var(--dark-surface-border); min-height:326px; padding:28px 28px 28px 0; position:relative; }
+.delivery-timeline li:not(:last-child) { border-right:1px solid var(--dark-surface-border); padding-right:28px; }
+.delivery-timeline li:not(:first-child) { padding-left:28px; }
+.delivery-timeline li:not(:last-child)::after { border-right:1px solid var(--ai-purple-light); border-top:1px solid var(--ai-purple-light); content:""; height:7px; position:absolute; right:-4px; top:38px; transform:rotate(45deg); width:7px; z-index:1; }
+.delivery-timeline span { color:var(--ai-purple-light); font-size:12px; font-weight:700; letter-spacing:.13em; }
+.delivery-timeline h3 { color:var(--dark-surface-text-primary); font-size:27px; margin:30px 0 13px; }
+.delivery-timeline p { font-size:15px; line-height:1.85; margin:0; }
+.delivery-timeline small { color:var(--dark-surface-text-secondary); display:block; font-size:13px; line-height:1.75; margin-top:24px; }
+.delivery-flow { align-items:center; border-bottom:1px solid #E2E8F0; border-top:1px solid #E2E8F0; color:var(--text1); display:flex; font-size:clamp(20px,2.5vw,32px); font-weight:700; gap:18px; justify-content:space-between; padding:30px 0; }
+.delivery-flow i { color:var(--ai-purple); font-style:normal; }
+.delivery-flow strong { color:var(--ai-purple); }
+.delivery-links { display:grid; gap:18px; grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:42px; }
+.delivery-links a { border:1px solid #E2E8F0; color:var(--text1); min-height:166px; padding:28px; text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
+.delivery-links a:hover { border-color:var(--ai-purple); transform:translateY(-3px); }
+.delivery-links small { color:var(--ai-purple); display:block; font-size:12px; font-weight:700; letter-spacing:.12em; margin-bottom:24px; }
+.delivery-links strong { display:block; font-size:24px; margin-bottom:12px; }
+.delivery-links span { color:var(--text2); display:block; line-height:1.75; }
+.delivery-principle-grid { display:grid; gap:18px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+.delivery-principle-grid article { border-top:2px solid var(--ai-purple); padding:24px 0 12px; }
+.delivery-principle-grid b { color:var(--text1); font-size:24px; }
+.delivery-principle-grid p { line-height:1.8; margin:16px 0 0; }
+@media (max-width:900px) { .delivery-timeline { grid-template-columns:1fr; }.delivery-timeline li,.delivery-timeline li:not(:first-child) { min-height:0; padding:28px 0 38px 70px; }.delivery-timeline li:not(:last-child) { border-right:0; }.delivery-timeline li:not(:last-child)::after { bottom:-4px; left:21px; right:auto; top:auto; transform:rotate(135deg); }.delivery-timeline span { left:0; position:absolute; top:31px; }.delivery-flow { align-items:flex-start; flex-direction:column; gap:10px; }.delivery-flow i { transform:rotate(90deg); }.delivery-principle-grid { grid-template-columns:1fr; max-width:620px; } }
+@media (max-width:560px) { .delivery-context-grid,.delivery-links { grid-template-columns:1fr; }.delivery-context-card { min-height:0; padding:26px; }.delivery-context-card h3 { font-size:24px; margin-top:27px; }.delivery-links a { min-height:0; padding:26px; }.delivery-flow { font-size:25px; }.delivery-timeline h3 { font-size:25px; } }
+@media (prefers-reduced-motion:reduce) { .delivery-links a { transition:none; transform:none; } }
