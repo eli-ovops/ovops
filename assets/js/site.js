@@ -1,0 +1,21 @@
+(() => {
+  const header = document.querySelector('[data-header]');
+  const toggle = document.querySelector('[data-nav-toggle]');
+  toggle?.addEventListener('click', () => { const open = header.classList.toggle('nav-open'); toggle.setAttribute('aria-expanded', String(open)); });
+  document.querySelectorAll('[data-nav] a').forEach(link => link.addEventListener('click', () => { header.classList.remove('nav-open'); toggle?.setAttribute('aria-expanded', 'false'); }));
+
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: .15, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal,.reveal-scale').forEach((element, index) => { element.style.transitionDelay = `${Math.min(index % 6, 5) * 80}ms`; observer.observe(element); });
+
+  document.querySelectorAll('.faq-item button').forEach(button => button.addEventListener('click', () => { const item = button.closest('.faq-item'); const open = !item.classList.contains('active'); document.querySelectorAll('.faq-item').forEach(other => { other.classList.remove('active'); other.querySelector('button').setAttribute('aria-expanded', 'false'); }); if (open) { item.classList.add('active'); button.setAttribute('aria-expanded', 'true'); } }));
+
+  const rail = document.querySelector('[data-industry-rail]'); const railIndex = document.querySelector('[data-rail-index]'); const railTotal = document.querySelector('[data-rail-total]'); let page = 0;
+  if (rail && railIndex) { if (!railTotal) return; const updateRail = () => { const mobile = matchMedia('(max-width:560px)').matches; const perPage = mobile ? 1 : 3; const total = mobile ? rail.children.length : 3; page = (page + total * perPage) % (total * perPage); rail.dataset.railPage = String(page); rail.style.transform = `translateX(-${page * (100 / perPage)}%)`; railIndex.textContent = String(Math.floor(page / perPage) + 1).padStart(2, '0'); railTotal.textContent = String(total).padStart(2, '0'); };
+    document.querySelector('[data-rail-next]')?.addEventListener('click', () => { page = Number(rail.dataset.railPage || 0) + (matchMedia('(max-width:560px)').matches ? 1 : 3); updateRail(); });
+    document.querySelector('[data-rail-prev]')?.addEventListener('click', () => { page = Number(rail.dataset.railPage || 0) - (matchMedia('(max-width:560px)').matches ? 1 : 3); updateRail(); });
+    matchMedia('(max-width:560px)').addEventListener('change', () => { page = 0; updateRail(); }); updateRail(); }
+
+  const canvas = document.getElementById('heroCanvas'); if (!canvas) return; const ctx = canvas.getContext('2d'); const host = canvas.parentElement; const dots = Array.from({length: 48}, () => ({x: Math.random(), y: Math.random(), vx:(Math.random()-.5)*.0008, vy:(Math.random()-.5)*.0008, r:Math.random()*1.7+.4})); const pointer = {x:.5,y:.5};
+  host.addEventListener('pointermove', event => { const rect = host.getBoundingClientRect(); pointer.x = (event.clientX-rect.left)/rect.width; pointer.y = (event.clientY-rect.top)/rect.height; });
+  const draw = () => { const {width,height} = host.getBoundingClientRect(); const scale = devicePixelRatio > 1 ? 2 : 1; if (canvas.width !== width*scale || canvas.height !== height*scale) { canvas.width=width*scale; canvas.height=height*scale; canvas.style.width=`${width}px`; canvas.style.height=`${height}px`; ctx.setTransform(scale,0,0,scale,0,0); } ctx.clearRect(0,0,width,height); dots.forEach(dot => { dot.x+=dot.vx;dot.y+=dot.vy;if(dot.x<0||dot.x>1)dot.vx*=-1;if(dot.y<0||dot.y>1)dot.vy*=-1; }); for(let a=0;a<dots.length;a++){ for(let b=a+1;b<dots.length;b++){const dx=(dots[a].x-dots[b].x)*width,dy=(dots[a].y-dots[b].y)*height,d=Math.hypot(dx,dy);if(d<105){ctx.strokeStyle=`rgba(103,87,207,${.15*(1-d/105)})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(dots[a].x*width,dots[a].y*height);ctx.lineTo(dots[b].x*width,dots[b].y*height);ctx.stroke();}}} dots.forEach(dot=>{const dx=dot.x-pointer.x,dy=dot.y-pointer.y,d=Math.hypot(dx,dy);if(d<.14){dot.x+=dx*.003;dot.y+=dy*.003;}ctx.fillStyle='rgba(73,100,220,.48)';ctx.beginPath();ctx.arc(dot.x*width,dot.y*height,dot.r,0,Math.PI*2);ctx.fill();}); requestAnimationFrame(draw); }; draw();
+})();

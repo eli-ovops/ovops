@@ -1,8 +1,0 @@
-import type { Metadata } from "next";
-import { FaqList } from "@/components/content-sections";
-import { JsonLd } from "@/components/json-ld";
-import { faqs, text } from "@/lib/content-data";
-import { isChineseSite } from "@/lib/site-data";
-import { buildPageMetadata, pageBreadcrumbJsonLd } from "@/lib/seo-data";
-export const metadata: Metadata = buildPageMetadata({ path: "/faq", title: isChineseSite ? "常见采购问题" : "Frequently Asked Questions", description: isChineseSite ? "关于范围、流程、周期、数据、部署、模型与维护的常见采购问题。" : "Buyer questions about scope, process, timing, data, deployment, models and maintenance." });
-export default function FAQPage() { const locale = isChineseSite ? "zh" as const : "en" as const; const jsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((item) => ({ "@type": "Question", name: text(item.question, locale), acceptedAnswer: { "@type": "Answer", text: text(item.answer, locale) } })) }; return <main><JsonLd data={[pageBreadcrumbJsonLd(isChineseSite ? "常见问题" : "FAQ", "/faq"), jsonLd]} /><section className="light-band border-b border-slate-200 py-16"><div className="section-wrap max-w-4xl"><p className="kicker">FAQ</p><h1 className="mt-5 text-4xl font-black text-navy-950 md:text-6xl">{isChineseSite ? "先回答采购中的关键问题。" : "Answer the key buying questions first."}</h1><p className="mt-6 text-lg leading-9 text-slate-600">{isChineseSite ? "答案用于范围判断，不替代项目确认、合同、隐私或安全专项意见。" : "Answers support scope decisions and do not replace project confirmation, contracts, privacy or security advice."}</p></div></section><section className="section-wrap py-16"><FaqList locale={locale} /></section></main>; }

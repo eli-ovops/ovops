@@ -1,0 +1,31 @@
+/* Phase 3.6: retain the existing industry rail interaction and card hierarchy. */
+.industry-section .rail-controls { display: flex; }
+
+.industry-section .industry-rail {
+  display: flex;
+  gap: 18px;
+}
+
+.industry-section .industry-rail article {
+  min-width: 0;
+  min-height: 276px;
+  padding: 30px;
+  display: flex;
+  flex: 0 0 calc((100% - 36px) / 3);
+  flex-direction: column;
+}
+
+.industry-section .industry-card-action {
+  display: block;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .industry-section .industry-rail article { min-height: 248px; }
+}
+
+@media (max-width: 560px) {
+  .industry-section .industry-rail { gap: 14px; }
+  .industry-section .industry-rail article { flex-basis: 100%; min-height: 230px; padding: 26px; }
+}

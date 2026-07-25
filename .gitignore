@@ -1,8 +1,37 @@
-.next/
-out/
+# Dependencies and local configuration
 node_modules/
-*.log
+.env
+.env.*
 .DS_Store
-qa-*.png
-reports/
-tsconfig.tsbuildinfo
+**/.DS_Store
+.vscode/
+
+# Browser, test, and temporary artifacts
+.playwright-cli/
+screenshots/
+browser-cache/
+docs/qa/
+*.log
+*.tmp
+*.temp
+
+# Phase and QA evidence is not source for this GitHub baseline
+*_REPORT.md
+PHASE_*.md
+OVOPS_PHASE*.md
+SOLUTION_*_REPORT.md
+SOLUTION_PAGE_MATRIX.md
+
+# Reference and migration materials
+MarketingForce*/
+marketingforce*/
+migration/
+*-migration/
+
+# Ignore generic raster artifacts, but retain all production site assets.
+*.png
+*.jpg
+*.jpeg
+!assets/
+!assets/**
+assets/**/.DS_Store

@@ -1,0 +1,26 @@
+/* Phase 3.9: pending detail entries retain local hierarchy without false navigation. */
+.mega-menu .navigation-pending {
+  color: #475569;
+  display: block;
+  font-size: 12px;
+  padding: 5px 0;
+  pointer-events: none;
+}
+
+.footer-grid .navigation-pending {
+  color: var(--dark-surface-text-secondary);
+  display: block;
+  font-size: 13px;
+  margin: 9px 0;
+  pointer-events: none;
+}
+
+.industry-section a.industry-card-action {
+  color: inherit;
+  text-decoration: none;
+}
+
+.industry-section a.industry-card-action:focus-visible {
+  outline: 2px solid var(--ai-purple);
+  outline-offset: 4px;
+}

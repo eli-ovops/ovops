@@ -1,0 +1,37 @@
+/* Phase 3.5.1: Hero-only alignment and existing-node spatial distribution. */
+.hero .page-container {
+  align-items: center;
+  min-height: 560px;
+}
+
+.hero-visual {
+  min-height: 550px;
+}
+
+/* Existing six nodes: clockwise from the requested top position. */
+.hero-visual > .hero-orbit-node:nth-child(4) { top: 5%; left: calc(50% - 50px); right: auto; bottom: auto; }
+.hero-visual > .hero-orbit-node:nth-child(5) { top: auto; left: calc(50% - 50px); right: auto; bottom: 2%; }
+.hero-visual > .hero-orbit-node:nth-child(6) { top: 60%; left: auto; right: 3%; bottom: auto; }
+.hero-visual > .hero-orbit-node:nth-child(7) { top: 18%; left: auto; right: 3%; bottom: auto; }
+.hero-visual > .hero-orbit-node:nth-child(8) { top: 18%; left: 3%; right: auto; bottom: auto; }
+.hero-visual > .hero-orbit-node:nth-child(9) { top: 60%; left: 3%; right: auto; bottom: auto; }
+
+@media (max-width: 900px) {
+  .hero .page-container { min-height: 0; }
+  .hero-visual { min-height: 440px; }
+  .hero-visual > .hero-orbit-node:nth-child(4) { top: 5%; left: calc(50% - 50px); right: auto; bottom: auto; display: flex; }
+  .hero-visual > .hero-orbit-node:nth-child(5) { top: auto; left: calc(50% - 50px); right: auto; bottom: 2%; display: flex; }
+  .hero-visual > .hero-orbit-node:nth-child(6) { top: calc(50% - 50px); left: auto; right: 3%; bottom: auto; display: flex; }
+  .hero-visual > .hero-orbit-node:nth-child(7),
+  .hero-visual > .hero-orbit-node:nth-child(9) { display: none; }
+  .hero-visual > .hero-orbit-node:nth-child(8) { top: calc(50% - 50px); left: 3%; right: auto; bottom: auto; display: flex; }
+}
+
+@media (max-width: 560px) {
+  .hero { margin-top: 50px; padding-top: 58px; }
+  .hero-visual { height: 300px; min-height: 300px; margin: 0; transform: none; }
+  .hero-visual > .hero-orbit-node:nth-child(4) { top: 5%; left: 4%; right: auto; bottom: auto; }
+  .hero-visual > .hero-orbit-node:nth-child(5) { top: 5%; left: auto; right: 4%; bottom: auto; }
+  .hero-visual > .hero-orbit-node:nth-child(6) { top: auto; left: auto; right: 4%; bottom: 5%; }
+  .hero-visual > .hero-orbit-node:nth-child(8) { top: auto; left: 4%; right: auto; bottom: 5%; }
+}
